@@ -1,13 +1,19 @@
 package ar.com.telecom.iot.idptecoforgerock;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
 
 import net.openid.appauth.AuthorizationRequest;
 import net.openid.appauth.AuthorizationServiceConfiguration;
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements NodeListener<FRUs
         runOnUiThread(() -> {
             if (FRUser.getCurrentUser() == null) {
                 status.setText("User is not authenticated.");
+                status.setTextColor(Color.RED);
                 logoutButton.setEnabled(false);
                 loginWithBrowserButton.setEnabled(true);
                 TokenInfoTitle.setVisibility(View.GONE);
@@ -90,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements NodeListener<FRUs
                 IdToken.setVisibility(View.GONE);
             } else {
                 status.setText("User is authenticated.");
+                //set statuc color to GREEN
+                status.setTextColor(Color.GREEN);
                 logoutButton.setEnabled(true);
                 loginWithBrowserButton.setEnabled(false);
                 TokenInfoTitle.setVisibility(View.VISIBLE);
@@ -112,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements NodeListener<FRUs
                     String header = chunks[0];
                     String headerDecoded = new String(android.util.Base64.decode(header, android.util.Base64.DEFAULT));
                     String signature = chunks[2];
+
 
                     IdToken.setText("Header: \n" +
                             new JSONObject(headerDecoded).toString(4)+
@@ -137,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements NodeListener<FRUs
             }
         });
     }
+
 
     @Override
     public void onCallbackReceived(Node node) {
