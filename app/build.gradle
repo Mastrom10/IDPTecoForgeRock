@@ -57,6 +57,10 @@ dependencies {
     //JWT
     implementation 'com.auth0:java-jwt:4.2.1'
 
+    //Lector de QR
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0@aar'
+    implementation 'com.google.zxing:core:3.4.1'
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'

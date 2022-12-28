@@ -71,6 +71,17 @@
                 android:textColor="@color/material_dynamic_neutral20"
                 app:iconTint="@color/Purpura_telecom" />
 
+            <Button
+                android:id="@+id/btnGoMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:backgroundTint="@color/Purpura_telecom"
+                android:visibility="gone"
+                android:text="Go to Menu"
+                android:textColor="@color/material_dynamic_neutral20"
+                app:iconTint="@color/Purpura_telecom" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="41dp" />

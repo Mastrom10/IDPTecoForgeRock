@@ -3,6 +3,7 @@ package ar.com.telecom.iot.idptecoforgerock;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -36,12 +38,14 @@ public class MainActivity extends AppCompatActivity implements NodeListener<FRUs
     private TextView status;
     private Button loginWithBrowserButton;
     private Button logoutButton;
+    Button btnGoMenu;
     String TAG;
 
     private TextView TokenInfoTitle;
     private TextView TokenInfo;
     private TextView IdTokenTitle;
     private TextView IdToken;
+    String idTokenstring;
 
 
 
@@ -53,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements NodeListener<FRUs
         status = findViewById(R.id.textViewStatus);
         logoutButton = findViewById(R.id.btnLogOut);
         loginWithBrowserButton = findViewById(R.id.btnLoginWeb);
+
+        //btnGoMenu
+        btnGoMenu = findViewById(R.id.btnGoMenu);
 
         TokenInfoTitle = findViewById(R.id.textViewTokenInfoTitle);
         TokenInfo = findViewById(R.id.textViewTokenInfo);
@@ -80,8 +87,30 @@ public class MainActivity extends AppCompatActivity implements NodeListener<FRUs
 
         }).done().login(this, this));
 
+        btnGoMenu.setOnClickListener(view -> {
+
+            //start activity if user is logged in
+            if (FRUser.getCurrentUser() != null) {
+                //Go to Menu, passing the idTokenstring
+                Intent intent = new Intent(this, MainMenu.class);
+                intent.putExtra("idTokenstring", idTokenstring);
+                startActivity(intent);
+            } else {
+                //show error mensaje
+                Toast.makeText(this, "You must be logged in to access this menu", Toast.LENGTH_SHORT).show();
+                updateStatus();
+
+            }
+        });
 
 
+    }
+
+    //on resume update status
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateStatus();
     }
 
     private void updateStatus() {
@@ -91,20 +120,26 @@ public class MainActivity extends AppCompatActivity implements NodeListener<FRUs
                 status.setTextColor(Color.RED);
                 logoutButton.setEnabled(false);
                 loginWithBrowserButton.setEnabled(true);
+                loginWithBrowserButton.setVisibility(View.VISIBLE);
+                logoutButton.setVisibility(View.GONE);
                 TokenInfoTitle.setVisibility(View.GONE);
                 TokenInfo.setVisibility(View.GONE);
                 IdTokenTitle.setVisibility(View.GONE);
                 IdToken.setVisibility(View.GONE);
+                btnGoMenu.setVisibility(View.GONE);
             } else {
                 status.setText("User is authenticated.");
                 //set statuc color to GREEN
                 status.setTextColor(Color.GREEN);
                 logoutButton.setEnabled(true);
+                logoutButton.setVisibility(View.VISIBLE);
                 loginWithBrowserButton.setEnabled(false);
+                loginWithBrowserButton.setVisibility(View.GONE);
                 TokenInfoTitle.setVisibility(View.VISIBLE);
                 TokenInfo.setVisibility(View.VISIBLE);
                 IdTokenTitle.setVisibility(View.VISIBLE);
                 IdToken.setVisibility(View.VISIBLE);
+                btnGoMenu.setVisibility(View.VISIBLE);
 
                 try {
                     String token = FRUser.getCurrentUser().getAccessToken().toJson();
@@ -113,9 +148,9 @@ public class MainActivity extends AppCompatActivity implements NodeListener<FRUs
                     JSONObject jsonObject = new JSONObject(token);
                     TokenInfo.setText(jsonObject.toString(4));
 
-                    String idToken = jsonObject.getString("idToken");
+                    idTokenstring= jsonObject.getString("idToken");
 
-                    String[] chunks = idToken.split("\\.");
+                    String[] chunks = idTokenstring.split("\\.");
                     String payload = chunks[1];
                     String payloadDecoded = new String(android.util.Base64.decode(payload, android.util.Base64.DEFAULT));
                     String header = chunks[0];
