@@ -3,3 +3,26 @@ plugins {
     id 'com.android.application' version '7.3.1' apply false
     id 'com.android.library' version '7.3.1' apply false
 }
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https : //dl.bintray.com/jenly/maven ' }
+        maven {
+            url "https://maven-other.tuya.com/repository/maven-releases/"
+            mavenContent {
+                releasesOnly()
+            }
+        }
+
+        maven { url "https://maven-other.tuya.com/repository/maven-commercial-releases/" }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

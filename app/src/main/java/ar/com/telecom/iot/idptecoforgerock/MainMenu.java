@@ -1,5 +1,7 @@
 package ar.com.telecom.iot.idptecoforgerock;
 
+import static ar.com.telecom.iot.idptecoforgerock.RequestMaker.baseurl;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,8 +35,7 @@ public class MainMenu extends AppCompatActivity {
     TextView lblTextInfo;
 
 
-    //String baseurl = "https://tuyabff.apps.k8s.cablevision-labs.com.ar";
-    String baseurl = "http://192.168.0.151:4001";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

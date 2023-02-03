@@ -19,12 +19,15 @@ import android.widget.Toast;
 
 import org.forgerock.android.auth.FRUser;
 
+import okhttp3.Callback;
+
 public class MiniSDKPairing extends AppCompatActivity {
 
 
     TextView LoginStatusTextView;
     Button btnLogOut;
     Button btnObtenerSSID;
+    Button btnPairViaAPMode;
 
     EditText txtssid;
     EditText txtPassWord;
@@ -56,7 +59,41 @@ public class MiniSDKPairing extends AppCompatActivity {
             ObtenerSSID();
         });
 
+
+        btnPairViaAPMode = findViewById(R.id.btnPairViaAPMode);
+
+        btnPairViaAPMode.setOnClickListener(v -> {
+            PairViaAPMode();
+        });
+
     }
+
+
+    public void PairViaAPMode(){
+        String url = RequestMaker.baseurl + "/tuya/device/paring/token";
+        RequestMaker.makeRequest(url, callbackGetToken);
+    }
+
+    Callback callbackGetToken = new okhttp3.Callback() {
+        @Override
+        public void onFailure(okhttp3.Call call, java.io.IOException e) {
+            e.printStackTrace();
+        }
+
+        @Override
+        public void onResponse(okhttp3.Call call, okhttp3.Response response) throws java.io.IOException {
+            if (response.isSuccessful()) {
+                final String myResponse = response.body().string();
+                MiniSDKPairing.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MiniSDKPairing.this, myResponse, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }
+    };
+
 
     void ObtenerSSID(){
         // Verificar si se tienen permisos
