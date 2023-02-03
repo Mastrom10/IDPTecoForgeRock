@@ -90,17 +90,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnGetDevices" />
 
+    <Button
+        android:id="@+id/btnPairDeviceViaMiniSDKApMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/Purpura_telecom"
+        android:text="Pair Device Via Mini SDK"
+        android:textColor="@color/material_dynamic_neutral20"
+        app:iconTint="@color/Purpura_telecom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPairDeviceViaQR" />
+
     <TextView
         android:id="@+id/lblTextInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="20dp"
         android:text="Responses..."
         android:textColor="@color/material_dynamic_neutral99"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPairDeviceViaQR" />
+        app:layout_constraintTop_toBottomOf="@+id/btnPairDeviceViaMiniSDKApMode" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

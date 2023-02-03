@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212529"
+    tools:context=".MiniSDKPairing">
+
+    <Button
+        android:id="@+id/btnLogOut2"
+        android:layout_width="104dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@color/Purpura_telecom"
+        android:text="LogOut"
+        android:textColor="@color/material_dynamic_neutral20"
+        app:iconTint="@color/Purpura_telecom"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/loginStatusText"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginTop="4dp"
+        android:text="Login Status"
+        android:textColor="@color/material_dynamic_neutral99"
+
+
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnLogOut2"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/telecomlogo" />
+
+
+    <Button
+        android:id="@+id/btnObtenerSSID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="52dp"
+        android:backgroundTint="@color/Purpura_telecom"
+        android:text="Obtener SSID"
+        android:textColor="@color/material_dynamic_neutral20"
+        app:iconTint="@color/Purpura_telecom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblssid2" />
+
+    <Button
+        android:id="@+id/btnPairViaAPMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/Purpura_telecom"
+        android:text="Pair Via AP Mode"
+        android:textColor="@color/material_dynamic_neutral20"
+        app:iconTint="@color/Purpura_telecom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnObtenerSSID" />
+
+    <EditText
+        android:id="@+id/txtssid"
+        android:layout_width="311dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="SSID"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/lblssid"
+        app:layout_constraintTop_toBottomOf="@+id/lblssid" />
+
+    <TextView
+        android:id="@+id/lblssid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="SSID:"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/lblssid2"
+        android:layout_width="307dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="24dp"
+        android:inputType="textMultiLine"
+        android:text="Procedimiento:\n
+        1. Conectesé a su red Wifi.\n
+        2. Presione el botón de obtener SSID.\n
+        3. Escriba el password de su Wifi.\n
+        4. Conectesé al Wifi del dispositivo IoT.\n
+        5. Presione el botón de Pair Via AP Mode.\n
+        6. Cruzar los dedos y Rezar"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassWord" />
+
+    <TextView
+        android:id="@+id/lblPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Password:"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtssid" />
+
+    <EditText
+        android:id="@+id/txtPassWord"
+        android:layout_width="311dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="password"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/lblPassword"
+        app:layout_constraintTop_toBottomOf="@+id/lblPassword" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

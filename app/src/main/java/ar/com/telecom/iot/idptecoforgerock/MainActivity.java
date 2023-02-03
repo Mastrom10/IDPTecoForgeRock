@@ -1,24 +1,14 @@
 package ar.com.telecom.iot.idptecoforgerock;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-
-import net.openid.appauth.AuthorizationRequest;
-import net.openid.appauth.AuthorizationServiceConfiguration;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.forgerock.android.auth.FRAuth;
 import org.forgerock.android.auth.FRUser;
@@ -29,7 +19,6 @@ import org.forgerock.android.auth.exception.AuthenticationRequiredException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Collections;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements NodeListener<FRUser> {
